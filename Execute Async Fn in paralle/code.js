@@ -4,7 +4,7 @@
  */
 var promiseAll = function (functions) {
     return new Promise((resolve, reject) => {
-        const res = new Array(functions.length);
+        const res = [];
         let count = 0;
         for (let i = 0; i < functions.length; i++) {
             functions[i]()
