@@ -1,0 +1,18 @@
+.color-grid-app {
+    padding: 20px;
+  }
+  
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  .grid-container {
+    display: grid;
+    gap: 8px;
+  }
+  
+  .grid-item {
+    height: 50px;
+    cursor: pointer;
+  }
+  
