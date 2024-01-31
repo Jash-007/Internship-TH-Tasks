@@ -4,7 +4,12 @@ import "./home.css";
 export default function Home() {
   const [rows, setRows] = useState(10);
   const [columns, setColumns] = useState(10);
-  const [colors, setColors] = useState("#FF5733, #33FF57, #5733FF", "#F78F26");
+  const [colors, setColors] = useState([
+    "#FF5733",
+    "#33FF57",
+    "#5733FF",
+    "#F78F26",
+  ]);
   const [gridItems, setGridItems] = useState([]);
   const DynamicGrid = styled.div`
     display: grid;
@@ -13,12 +18,10 @@ export default function Home() {
     gap: 2px;
   `;
   function generateGridItems() {
-    const colorArray = colors.split(",").map((color) => color.trim());
     const items = [];
 
     for (let i = 0; i < rows * columns; i++) {
-      const randomColor =
-        colorArray[Math.floor(Math.random() * colorArray.length)];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
       items.push({ id: i, color: randomColor });
     }
 
