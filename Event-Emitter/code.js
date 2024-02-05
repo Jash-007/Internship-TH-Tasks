@@ -1,7 +1,5 @@
 class EventEmitter {
-    constructor() {
-        this.events = new Map();
-    }
+    events = {};
 
     /**
      * @param {string} eventName
@@ -9,16 +7,16 @@ class EventEmitter {
      * @return {Object}
      */
     subscribe(eventName, callback) {
-        if (!this.events.has(eventName)) {
-            this.events.set(eventName, [])
+        if (!this.events[eventName]) {
+            this.events[eventName] = [];
         }
-        const e = this.events.get(eventName);
-        e.push(callback);
+        const event = this.events[eventName];
+        event.push(callback);
         return {
             unsubscribe: () => {
-                const index = e.indexOf(callback);
+                const index = event.indexOf(callback);
                 if (index !== -1) {
-                    e.splice(index, 1)
+                    event.splice(index, 1)
                 }
             }
         };
@@ -30,12 +28,12 @@ class EventEmitter {
      * @return {Array}
      */
     emit(eventName, args = []) {
-        if (!this.events.has(eventName)) {
-            return []
+        if (!this.events[eventName]) {
+            return [];
         }
-        const e = this.events.get(eventName);
+        const event = this.events[eventName];
         const res = []
-        for (const listener of e) {
+        for (const listener of event) {
             res.push(listener(...args))
         }
         return res;
